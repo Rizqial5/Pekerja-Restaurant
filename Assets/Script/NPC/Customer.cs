@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TestPR.UI;
 
 namespace TestPR.NPC
 {
@@ -18,7 +19,11 @@ namespace TestPR.NPC
 
         #endregion
 
+        [SerializeField] private float maxValueQueue;
+
         private OrderMechanic orderMechanic;
+        private LoadBarBehaviour loadBarBehaviour;
+        
 
         public int ID { get; private set; }
         public float ArrivalTime { get; private set; }
@@ -28,6 +33,7 @@ namespace TestPR.NPC
         private float speed = 5f;
         private bool isMoving = false;
         private Vector2 targetPosition;
+        
 
         public bool isPermittedToEnter {  get; set; }
 
@@ -35,6 +41,7 @@ namespace TestPR.NPC
         private void Awake()
         {
             orderMechanic = GetComponent<OrderMechanic>();
+            loadBarBehaviour = GetComponent<LoadBarBehaviour>();
 
             charStateMachine = new CharStateMachine();
             queueState = new QueueState(this, charStateMachine);
@@ -71,6 +78,9 @@ namespace TestPR.NPC
             ID = id;
             ArrivalTime = arrivalTime;
             this.queuePoints = queuePoints;
+
+            
+
             MoveToQueuePoint(0); 
         }
 
@@ -81,6 +91,8 @@ namespace TestPR.NPC
                 currentQueueIndex = queueIndex;
                 targetPosition = queuePoints[queueIndex].position;
                 isMoving = true;
+                
+                //loadBarBehaviour.DecreaseBarProgress(10);
             }
         }
 
@@ -113,12 +125,25 @@ namespace TestPR.NPC
             {
                 isMoving = false;
 
+                
+
+                loadBarBehaviour.SpawnBar(maxValueQueue, CustomerAngry);
+
+                
             }
         }
+
+        public void CustomerAngry()
+        {
+            print("Customer Marah-marah");
+        }
+        
 
         public OrderMechanic GetOrderMechanic()
         {
             return orderMechanic;
         }
+
+
     }
 }

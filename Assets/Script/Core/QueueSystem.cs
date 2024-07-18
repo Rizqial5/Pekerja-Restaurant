@@ -25,7 +25,7 @@ namespace TestPR.Core
 
         void Start()
         {
-            InvokeRepeating("GenerateCustomer", customerArrivalInterval, customerArrivalInterval);
+            //InvokeRepeating("GenerateCustomer", customerArrivalInterval, customerArrivalInterval);
         }
 
         void Update()

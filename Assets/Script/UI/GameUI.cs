@@ -27,7 +27,7 @@ namespace TestPR.UI
         {
             OrderBar spawnedBar = Instantiate(loadBarObject, this.transform);
 
-            spawnedBar.SetLoadingBar(100, PrintBisa);
+            spawnedBar.SetLoadingBar(100, PrintBisa, this.transform);
         }
 
         private void PrintBisa()

@@ -22,25 +22,34 @@ namespace TestPR.UI
 
         private void Update()
         {
-
+            loadSlider.maxValue = maxValue;
             loadSlider.value += 10 * Time.deltaTime;
 
-            if (loadSlider.value == maxValue)
+            if (loadSlider.value >= loadSlider.maxValue)
             {
                 onDone.Invoke();
-                Destroy(gameObject, 0.5f);
+                Destroy(gameObject, 0.5f);  
             }
 
         }
 
-        public void SetLoadingBar(float maxValue, UnityAction functionToCall)
+        public void SetLoadingBar(float maxValue, UnityAction functionToCall, Transform parent)
         {
+            
+
             onDone.AddListener(functionToCall);
 
-            Slider loadSLider = GetComponent<Slider>();
+            transform.SetParent(parent, false);
+
+            
 
             this.maxValue = maxValue;
             
+        }
+
+        public void DecreaseProgressBar(float decreaseValue)
+        {
+            loadSlider.value -= decreaseValue;
         }
     }
 }

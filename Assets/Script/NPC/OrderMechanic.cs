@@ -13,6 +13,7 @@ namespace TestPR.NPC
         private Customer customer;
 
         private bool isOrderDone;
+        private bool isPermittedToLeave;
 
         private void Awake()
         {
@@ -22,7 +23,7 @@ namespace TestPR.NPC
         private void Start()
         {
             isOrderDone = false;
-            customerTable = FindAnyObjectByType<sitLoc>().transform;
+            customerTable = FindAnyObjectByType<sitLoc>().transform; // kayaknya dirubah
         }
         public Vector2 EmptyTablePosition()
         {
@@ -61,9 +62,15 @@ namespace TestPR.NPC
             yield return new WaitForSeconds(waitTimePerSequence);
 
             isOrderDone=true;
+            print("Done, Ready to Leave");
 
             yield return null;
             
         }
+
+        public bool SetPermittedToLeave(bool value)
+        { return isPermittedToLeave = value; }
+
+        public bool IsPermittedToLeave() { return isPermittedToLeave; }
     }
 }

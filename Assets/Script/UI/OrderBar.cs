@@ -51,5 +51,11 @@ namespace TestPR.UI
         {
             loadSlider.value -= decreaseValue;
         }
+
+        public void DestorySpawnedBar()
+        {
+            
+            Destroy(gameObject);
+        }
     }
 }

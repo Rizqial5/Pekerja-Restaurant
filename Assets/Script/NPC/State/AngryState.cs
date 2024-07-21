@@ -12,7 +12,7 @@ namespace TestPR.NPC
 
         public override void EnterState()
         {
-            base.EnterState();
+            charBehaviour.UpdateCustomerAngry();
         }
 
         public override void ExitState()

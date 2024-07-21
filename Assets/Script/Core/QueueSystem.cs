@@ -18,10 +18,13 @@ namespace TestPR.Core
         [SerializeField] private TextMeshProUGUI queueDisplay; // Tampilan antrian pelanggan
 
         private int totalCustomer;
+        private int totalAngryCustomer;
+        private int totalSuccesfullyOrder;
 
         private Queue<Customer> customerQueue = new Queue<Customer>();
         private float timer = 0f;
         private int customerID = 1;
+        
 
         void Start()
         {
@@ -91,6 +94,29 @@ namespace TestPR.Core
             }
         }
 
-       
+        public int UpdateTotalAngryCustomer()
+        { 
+            return totalAngryCustomer++; 
+        }
+
+        public int GetTotalAngryCustomer()
+        {
+
+            return totalAngryCustomer; 
+        
+        }
+        public int UpdateTotalSuccesCustomer()
+        {
+            return totalSuccesfullyOrder ++;
+        }
+
+        public int GetTotalSuccesCustomer()
+        {
+
+            return totalSuccesfullyOrder;
+
+        }
+
+
     }
 }

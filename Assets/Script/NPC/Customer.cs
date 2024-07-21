@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TestPR.UI;
+using TestPR.Core;
 
 namespace TestPR.NPC
 {
@@ -19,19 +20,23 @@ namespace TestPR.NPC
 
         #endregion
 
-        [SerializeField] private float maxValueQueue;
+        [SerializeField] public float maxValueQueue;
 
         private OrderMechanic orderMechanic;
         private LoadBarBehaviour loadBarBehaviour;
+        private QueueSystem queueSystem;
         
 
         public int ID { get; private set; }
         public float ArrivalTime { get; private set; }
         public Transform[] queuePoints;
+        public Transform exitPoints;
         private int currentQueueIndex = 0;
+        private int oldQueueIndex = 0;
         
         private float speed = 5f;
         private bool isMoving = false;
+        private bool isAngry;
         private Vector2 targetPosition;
         
 
@@ -42,6 +47,7 @@ namespace TestPR.NPC
         {
             orderMechanic = GetComponent<OrderMechanic>();
             loadBarBehaviour = GetComponent<LoadBarBehaviour>();
+            
 
             charStateMachine = new CharStateMachine();
             queueState = new QueueState(this, charStateMachine);
@@ -54,6 +60,8 @@ namespace TestPR.NPC
         }
         void Start()
         {
+            exitPoints = FindAnyObjectByType<ExitLoc>().transform;
+            queueSystem = FindAnyObjectByType<QueueSystem>();
             charStateMachine.Initialize(queueState);
 
             
@@ -88,6 +96,7 @@ namespace TestPR.NPC
         {
             if (queueIndex < queuePoints.Length)
             {
+                oldQueueIndex = currentQueueIndex;
                 currentQueueIndex = queueIndex;
                 targetPosition = queuePoints[queueIndex].position;
                 isMoving = true;
@@ -106,6 +115,7 @@ namespace TestPR.NPC
             return isMoving;
         }
 
+
         public bool SetIsMoving(bool value)
         {
             return isMoving = value;
@@ -121,28 +131,61 @@ namespace TestPR.NPC
             float step = speed * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, target, step);
 
-            if ((Vector2)transform.position == target)
+            if (IsOnTargetedPosition(target))
             {
                 isMoving = false;
 
-                
+                //loadBarBehaviour.SpawnBar(maxValueQueue, CustomerAngry);
 
-                loadBarBehaviour.SpawnBar(maxValueQueue, CustomerAngry);
-
-                
             }
         }
 
-        public void CustomerAngry()
+        public void CustomerDone()
         {
-            print("Customer Marah-marah");
+            Destroy(gameObject, 0.5f);
         }
+
+
+        public void SetCustomerToAngry() // untuk di call di load bar jika progress selesai
+        {
+            isAngry = true;
+        }
+        public void UpdateCustomerAngry() 
+        {
+            queueSystem.UpdateTotalAngryCustomer();
+        }
+        public void UpdateCustomerHappy()
+        {
+            queueSystem.UpdateTotalSuccesCustomer();
+        }
+        public bool IsOnTargetedPosition(Vector2 target)
+        {
+            return (Vector2)transform.position == target;
+        }
+
+        public bool IsQueueIndexChanged()
+        {
+            if (oldQueueIndex != currentQueueIndex)
+            {
+                oldQueueIndex = currentQueueIndex;
+                return true;
+            }
+
+            return false;
+        }
+        public bool isCustomerAngry()
+        { return isAngry; } 
+        
         
 
         public OrderMechanic GetOrderMechanic()
         {
             return orderMechanic;
         }
+
+        public LoadBarBehaviour GetLoadBarBehaviour() { return loadBarBehaviour; }
+
+        public Transform GetExitLocation() { return exitPoints; }
 
 
     }

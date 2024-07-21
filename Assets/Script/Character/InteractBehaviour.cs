@@ -26,12 +26,19 @@ namespace TestPR.Character
 
             if(Input.GetKeyDown(KeyCode.K))
             {
-                interactedNpc.isPermittedToEnter = true;
-                queueSystem.ServeCustomer();
-
+                if(!interactedNpc.isPermittedToEnter)
+                {
+                    interactedNpc.isPermittedToEnter = true;
+                    queueSystem.ServeCustomer();
+                }
+                
+                if(interactedNpc.GetOrderMechanic().GetIsOrderDone())
+                {
+                    interactedNpc.GetOrderMechanic().SetPermittedToLeave(true);
+                }
                 
 
-                //maka player itu akan move towards to resto
+                
             }
         }
         private void OnTriggerEnter2D(Collider2D collision)
@@ -44,7 +51,14 @@ namespace TestPR.Character
                 
         }
 
-        
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            if (collision.tag == "Interact")
+            {
+                isInteractAble = true;
+                interactedNpc = collision.gameObject.GetComponentInParent<Customer>();
+            }
+        }
 
         private void OnTriggerExit2D(Collider2D collision)
         {

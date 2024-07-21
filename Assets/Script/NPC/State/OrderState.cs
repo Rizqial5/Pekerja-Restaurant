@@ -16,8 +16,9 @@ namespace TestPR.NPC
         public override void EnterState()
         {
             Debug.Log("Customer sudah memasuki restoran");
-
+            charBehaviour.GetLoadBarBehaviour().DestroyBar();
             
+
         }
 
         public override void ExitState()
@@ -27,21 +28,23 @@ namespace TestPR.NPC
 
         public override void FrameUpdate()
         {
+
             if (CheckTablePosition())
             {
                 charBehaviour.MoveToPosition(orderMechanic.EmptyTablePosition());
 
-            } else if(!CheckTablePosition())
+            }
+            else if (!CheckTablePosition())
             {
                 orderMechanic.StartOrder();
             }
 
 
-            if(orderMechanic.GetIsOrderDone())
+            if (orderMechanic.GetIsOrderDone() && orderMechanic.IsPermittedToLeave())// ditambahi jika customer juga sudah dipersilahkan keluar
             {
                 charBehaviour.charStateMachine.ChangeState(charBehaviour.doneState);
             }
-            
+
 
 
         }

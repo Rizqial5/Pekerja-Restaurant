@@ -34,7 +34,22 @@ namespace TestPR.NPC
                 charBehaviour.MoveToPosition(charBehaviour.GetTargetPosition());
             }
 
-            if(charBehaviour.isPermittedToEnter)
+            if(charBehaviour.IsOnTargetedPosition(charBehaviour.GetTargetPosition())) // jika player sudah diposisi queue pertma kali
+            {
+                charBehaviour.GetLoadBarBehaviour().SpawnBar(charBehaviour.maxValueQueue, charBehaviour.SetCustomerToAngry);
+            }
+
+            if(charBehaviour.IsQueueIndexChanged()) // jika posisi antrian player berpindah
+            {
+                charBehaviour.GetLoadBarBehaviour().DecreaseBarProgress(10f);
+            }
+
+            if(charBehaviour.isCustomerAngry())
+            {
+                charBehaviour.charStateMachine.ChangeState(charBehaviour.angryState);
+            }
+
+            if(charBehaviour.isPermittedToEnter) // jika NPC sudah di persilahkan untuk masuk resto
             {
                 charBehaviour.charStateMachine.ChangeState(charBehaviour.orderState);
             }

@@ -19,9 +19,13 @@ namespace TestPR.NPC
 
         private OrderBar spawnedBar;
 
+        private bool isAlreadySpawned;
+
         private void Start()
         {
             barObjectParent = FindAnyObjectByType<GameUI>().transform;
+
+            isAlreadySpawned = false;
         }
         private void Update()
         {
@@ -34,11 +38,22 @@ namespace TestPR.NPC
 
         public void SpawnBar(float maxValue, UnityAction functionCall)
         {
+            if (isAlreadySpawned) return;
+
             spawnedBar = Instantiate(barObject);
 
             spawnedBar.SetLoadingBar(maxValue, functionCall, barObjectParent);
 
             barRectTransform = spawnedBar.GetComponent<RectTransform>();
+
+            isAlreadySpawned = true;
+        }
+
+        public void DestroyBar()
+        {
+            if (spawnedBar == null) return;
+
+            spawnedBar.DestorySpawnedBar();          
         }
 
         public void DecreaseBarProgress(float decreaseValue)
@@ -47,7 +62,7 @@ namespace TestPR.NPC
 
             spawnedBar.DecreaseProgressBar(decreaseValue);
 
-            print("Customer lumayan sabar" + decreaseValue);
+            print("Customer lumayan sabar -" + decreaseValue);
         }
     }
 }

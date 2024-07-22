@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TestPR.Core;
+using TestPR.UI;
+using TMPro;
 
 namespace TestPR.NPC
 {
@@ -8,9 +11,17 @@ namespace TestPR.NPC
     {
         [SerializeField] Transform customerTable;
         [SerializeField] float waitTimePerSequence;
+        [SerializeField] string[] orderSequenceStrings;
        
 
+        private int currentIndexString = 0;
         private Customer customer;
+        private sitLoc emptySeat;
+        private SeatSystem seatSystem;
+        private OrderUI orderUI;
+
+
+        private float timeElapsed = 0f;
 
         private bool isOrderDone;
         private bool isPermittedToLeave;
@@ -22,17 +33,35 @@ namespace TestPR.NPC
 
         private void Start()
         {
+            seatSystem = FindAnyObjectByType<SeatSystem>();
             isOrderDone = false;
-            customerTable = FindAnyObjectByType<sitLoc>().transform; // kayaknya dirubah
+            
         }
-        public Vector2 EmptyTablePosition()
+
+        public void SetEmptySeat()
         {
+            emptySeat = seatSystem.GetEmptySeat();
 
-            return customerTable.position;
+            if(emptySeat == null)
+            {
+                customer.SetCustomerToAngry();
+                return;
+            }
+
+            orderUI = seatSystem.GetOrderUIObject();
+
+            emptySeat.isSeatOccupied = true;
+        }
+        public Vector2 EmptySeatPosition()
+        {
+            if(emptySeat == null)
+            {
+                return Vector2.zero; 
+            }
+            
+            return emptySeat.transform.position;
 
         }
-
-        
 
         
 
@@ -40,34 +69,48 @@ namespace TestPR.NPC
         {
             if(!isOrderDone)
             {
-                StartCoroutine(OrderSequence());
+                orderUI.gameObject.SetActive(true);
+
+                if(currentIndexString < orderSequenceStrings.Length)
+                {
+                    timeElapsed += Time.deltaTime;
+                    orderUI.SetOrderUIText(orderSequenceStrings[currentIndexString]);
+
+
+                    if (timeElapsed >= waitTimePerSequence)
+                    {
+                        timeElapsed = 0f;
+
+             
+                        currentIndexString++;
+                    }
+                }
+                else
+                {
+                    isOrderDone=true;
+                    orderUI.SetOrderUIText("Done");
+                }
+                
+
+
             } 
-            
 
         }
+
+        public void SetSeatToEmpty()
+        {
+            if (customer.isCustomerAngry()) return;
+
+
+            currentIndexString = 0;
+            orderUI.gameObject.SetActive(false);
+            emptySeat.isSeatOccupied = false;
+        }
+
+
 
         public bool GetIsOrderDone()
         { return isOrderDone; }
-
-        public IEnumerator OrderSequence() // percobaan
-        {
-            print("ordering....."); // diganti loading bar
-            yield return new WaitForSeconds(waitTimePerSequence);
-
-            print("Wating order.....");
-            yield return new WaitForSeconds(waitTimePerSequence);
-
-
-            print("eating.......");
-            yield return new WaitForSeconds(waitTimePerSequence);
-
-            isOrderDone=true;
-            print("Done, Ready to Leave");
-
-            yield return null;
-            
-        }
-
         public bool SetPermittedToLeave(bool value)
         { return isPermittedToLeave = value; }
 

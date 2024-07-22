@@ -14,12 +14,18 @@ namespace TestPR.NPC
 
 
         private Transform barObjectParent;
+        private SpawnedUIObjectBehaviour spawnedUIObject;
        
         private RectTransform barRectTransform;
 
         private OrderBar spawnedBar;
 
         private bool isAlreadySpawned;
+
+        private void Awake()
+        {
+            spawnedUIObject = GetComponent<SpawnedUIObjectBehaviour>();
+        }
 
         private void Start()
         {
@@ -31,9 +37,9 @@ namespace TestPR.NPC
         {
             if (spawnedBar == null) return;
 
-            Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetPosition.position);
+            spawnedUIObject.UpdateUIPositionWorld(barRectTransform, targetPosition);
 
-            barRectTransform.position = screenPosition;
+            //UpdateBarPosition();
         }
 
         public void SpawnBar(float maxValue, UnityAction functionCall)

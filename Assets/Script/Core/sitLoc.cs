@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class sitLoc : MonoBehaviour
+namespace TestPR.Core
 {
-    // Start is called before the first frame update
-    void Start()
+    public class sitLoc : MonoBehaviour
     {
-        
-    }
+        public bool isSeatOccupied { get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

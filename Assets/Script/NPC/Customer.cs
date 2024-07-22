@@ -148,12 +148,15 @@ namespace TestPR.NPC
 
         public void SetCustomerToAngry() // untuk di call di load bar jika progress selesai
         {
+            queueSystem.RemoveNPC(this);
             isAngry = true;
         }
         public void UpdateCustomerAngry() 
         {
+            print("Customer marah - marah");
             queueSystem.UpdateTotalAngryCustomer();
         }
+
         public void UpdateCustomerHappy()
         {
             queueSystem.UpdateTotalSuccesCustomer();

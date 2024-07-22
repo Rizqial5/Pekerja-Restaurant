@@ -16,6 +16,7 @@ namespace TestPR.NPC
         {
             Debug.Log("Makan sudah selesai");
 
+            charBehaviour.UpdateCustomerHappy();
             
         }
 

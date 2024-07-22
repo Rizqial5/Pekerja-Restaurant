@@ -22,7 +22,12 @@ namespace TestPR.NPC
 
         public override void FrameUpdate()
         {
-            base.FrameUpdate();
+            charBehaviour.MoveToPosition(charBehaviour.GetExitLocation().position);
+
+            if (charBehaviour.IsOnTargetedPosition(charBehaviour.GetExitLocation().position))
+            {
+                charBehaviour.CustomerDone();
+            }
         }
 
         public override void PhysicsUpdate()

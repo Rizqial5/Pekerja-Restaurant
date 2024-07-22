@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5995578504441380210}
   - component: {fileID: -8929974259958187243}
   - component: {fileID: 3362152099233717155}
+  - component: {fileID: 2221750933687393158}
   m_Layer: 0
   m_Name: NPC
   m_TagString: NPC
@@ -167,6 +168,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customerTable: {fileID: 0}
   waitTimePerSequence: 3
+  orderSequenceStrings:
+  - Ordering...
+  - Waiting...
+  - Eating...
 --- !u!114 &3362152099233717155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +186,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barObject: {fileID: 6625329675875730573, guid: 60c8f6822a15b41478982991bfa6a97f, type: 3}
   targetPosition: {fileID: 398844729394897319}
+--- !u!114 &2221750933687393158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426740999067408651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017297bc724b41440bf0681075a647a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6456655947867225129
 GameObject:
   m_ObjectHideFlags: 0

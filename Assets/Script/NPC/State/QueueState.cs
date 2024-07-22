@@ -46,6 +46,7 @@ namespace TestPR.NPC
 
             if(charBehaviour.isCustomerAngry())
             {
+                
                 charBehaviour.charStateMachine.ChangeState(charBehaviour.angryState);
             }
 

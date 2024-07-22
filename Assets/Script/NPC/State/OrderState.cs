@@ -17,21 +17,33 @@ namespace TestPR.NPC
         {
             Debug.Log("Customer sudah memasuki restoran");
             charBehaviour.GetLoadBarBehaviour().DestroyBar();
+            orderMechanic.SetEmptySeat();
+
+           
             
 
         }
 
         public override void ExitState()
         {
-            base.ExitState();
+            orderMechanic.SetSeatToEmpty();
         }
 
         public override void FrameUpdate()
         {
+            if(charBehaviour.isCustomerAngry())
+            {
+                charBehaviour.charStateMachine.ChangeState(charBehaviour.angryState);
+                return;
+            }
+
+
 
             if (CheckTablePosition())
             {
-                charBehaviour.MoveToPosition(orderMechanic.EmptyTablePosition());
+                charBehaviour.MoveToPosition(orderMechanic.EmptySeatPosition());
+
+                
 
             }
             else if (!CheckTablePosition())
@@ -51,7 +63,7 @@ namespace TestPR.NPC
 
         private bool CheckTablePosition()
         {
-            return (Vector2)charBehaviour.transform.position != orderMechanic.EmptyTablePosition();
+            return (Vector2)charBehaviour.transform.position != orderMechanic.EmptySeatPosition();
         }
 
         public override void PhysicsUpdate()

@@ -94,6 +94,17 @@ namespace TestPR.Core
             }
         }
 
+        public void RemoveNPC(Customer npc)
+        {
+            List<Customer> tempQueue = new List<Customer>(customerQueue);
+
+            if (tempQueue.Remove(npc))
+            {
+                customerQueue = new Queue<Customer>(tempQueue);
+               
+            }
+        }
+
         public int UpdateTotalAngryCustomer()
         { 
             return totalAngryCustomer++; 
@@ -115,6 +126,11 @@ namespace TestPR.Core
 
             return totalSuccesfullyOrder;
 
+        }
+
+        public int GetTotalCustomer()
+        {
+            return totalCustomer;
         }
 
 

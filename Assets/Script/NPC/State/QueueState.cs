@@ -29,31 +29,35 @@ namespace TestPR.NPC
 
 
 
-            if (charBehaviour.GetIsMoving())
-            {
-                charBehaviour.MoveToPosition(charBehaviour.GetTargetPosition());
-            }
-
-            if(charBehaviour.IsOnTargetedPosition(charBehaviour.GetTargetPosition())) // jika player sudah diposisi queue pertma kali
-            {
-                charBehaviour.GetLoadBarBehaviour().SpawnBar(charBehaviour.maxValueQueue, charBehaviour.SetCustomerToAngry);
-            }
-
-            if(charBehaviour.IsQueueIndexChanged()) // jika posisi antrian player berpindah
+            if (charBehaviour.IsQueueIndexChanged()) // jika posisi antrian player berpindah
             {
                 charBehaviour.GetLoadBarBehaviour().DecreaseBarProgress(10f);
             }
 
-            if(charBehaviour.isCustomerAngry())
+            if (charBehaviour.isCustomerAngry())
             {
-                
+
                 charBehaviour.charStateMachine.ChangeState(charBehaviour.angryState);
             }
 
-            if(charBehaviour.isPermittedToEnter) // jika NPC sudah di persilahkan untuk masuk resto
+            if (charBehaviour.isPermittedToEnter) // jika NPC sudah di persilahkan untuk masuk resto
             {
                 charBehaviour.charStateMachine.ChangeState(charBehaviour.orderState);
             }
+
+
+
+            if (charBehaviour.GetTargetPosition() == null) return;
+
+            if (charBehaviour.GetNpcMover().MoveToTarget(charBehaviour.GetTargetPosition()))
+            {
+                charBehaviour.SetTargetPosition(null);
+                charBehaviour.GetLoadBarBehaviour().SpawnBar(charBehaviour.maxValueQueue, charBehaviour.SetCustomerToAngry);
+            }
+
+            
+
+           
 
 
 

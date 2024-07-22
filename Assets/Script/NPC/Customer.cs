@@ -25,6 +25,7 @@ namespace TestPR.NPC
         private OrderMechanic orderMechanic;
         private LoadBarBehaviour loadBarBehaviour;
         private QueueSystem queueSystem;
+        private NpcMover npcMover;
         
 
         public int ID { get; private set; }
@@ -37,7 +38,7 @@ namespace TestPR.NPC
         private float speed = 5f;
         private bool isMoving = false;
         private bool isAngry;
-        private Vector2 targetPosition;
+        private Transform targetPosition;
         
 
         public bool isPermittedToEnter {  get; set; }
@@ -47,6 +48,7 @@ namespace TestPR.NPC
         {
             orderMechanic = GetComponent<OrderMechanic>();
             loadBarBehaviour = GetComponent<LoadBarBehaviour>();
+            npcMover = GetComponent<NpcMover>();
             
 
             charStateMachine = new CharStateMachine();
@@ -98,8 +100,10 @@ namespace TestPR.NPC
             {
                 oldQueueIndex = currentQueueIndex;
                 currentQueueIndex = queueIndex;
-                targetPosition = queuePoints[queueIndex].position;
-                isMoving = true;
+               
+
+                SetTargetPosition(queuePoints[queueIndex]);
+                
                 
                 //loadBarBehaviour.DecreaseBarProgress(10);
             }
@@ -110,35 +114,36 @@ namespace TestPR.NPC
             return currentQueueIndex;
         }
 
-        public bool GetIsMoving()
-        {
-            return isMoving;
-        }
+        //public bool GetIsMoving()
+        //{
+        //    return isMoving;
+        //}
 
 
-        public bool SetIsMoving(bool value)
-        {
-            return isMoving = value;
-        }
 
-        public Vector2 GetTargetPosition()
+        public Transform GetTargetPosition()
         {
             return targetPosition;
         }
 
-        public void MoveToPosition(Vector2 target)
+        public Transform SetTargetPosition( Transform valueTransform)
         {
-            float step = speed * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, target, step);
-
-            if (IsOnTargetedPosition(target))
-            {
-                isMoving = false;
-
-                //loadBarBehaviour.SpawnBar(maxValueQueue, CustomerAngry);
-
-            }
+            return targetPosition = valueTransform;
         }
+
+        //public void MoveToPosition(Vector2 target)
+        //{
+        //    float step = speed * Time.deltaTime;
+        //    transform.position = Vector2.MoveTowards(transform.position, target, step);
+
+        //    if (IsOnTargetedPosition(target))
+        //    {
+        //        isMoving = false;
+
+        //        //loadBarBehaviour.SpawnBar(maxValueQueue, CustomerAngry);
+
+        //    }
+        //}
 
         public void CustomerDone()
         {
@@ -161,10 +166,10 @@ namespace TestPR.NPC
         {
             queueSystem.UpdateTotalSuccesCustomer();
         }
-        public bool IsOnTargetedPosition(Vector2 target)
-        {
-            return (Vector2)transform.position == target;
-        }
+        //public bool IsOnTargetedPosition(Vector2 target)
+        //{
+        //    return (Vector2)transform.position == target;
+        //}
 
         public bool IsQueueIndexChanged()
         {
@@ -186,6 +191,7 @@ namespace TestPR.NPC
             return orderMechanic;
         }
 
+        public NpcMover GetNpcMover() { return npcMover; }
         public LoadBarBehaviour GetLoadBarBehaviour() { return loadBarBehaviour; }
 
         public Transform GetExitLocation() { return exitPoints; }

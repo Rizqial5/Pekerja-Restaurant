@@ -52,15 +52,14 @@ namespace TestPR.NPC
 
             emptySeat.isSeatOccupied = true;
         }
-        public Vector2 EmptySeatPosition()
+        public Transform EmptySeatPosition()
         {
             if(emptySeat == null)
             {
-                return Vector2.zero; 
+                return null; 
             }
-            
-            return emptySeat.transform.position;
 
+            return emptySeat.transform;
         }
 
         

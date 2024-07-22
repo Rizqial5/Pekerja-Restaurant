@@ -37,34 +37,27 @@ namespace TestPR.NPC
                 return;
             }
 
-
-
-            if (CheckTablePosition())
-            {
-                charBehaviour.MoveToPosition(orderMechanic.EmptySeatPosition());
-
-                
-
-            }
-            else if (!CheckTablePosition())
-            {
-                orderMechanic.StartOrder();
-            }
-
-
             if (orderMechanic.GetIsOrderDone() && orderMechanic.IsPermittedToLeave())// ditambahi jika customer juga sudah dipersilahkan keluar
             {
                 charBehaviour.charStateMachine.ChangeState(charBehaviour.doneState);
             }
 
 
+            if (orderMechanic.EmptySeatPosition() == null) return;
+
+            if (charBehaviour.GetNpcMover().MoveToTarget(orderMechanic.EmptySeatPosition()))
+            {
+                charBehaviour.SetTargetPosition(null);
+                orderMechanic.StartOrder();
+
+            }
+
+
+
 
         }
 
-        private bool CheckTablePosition()
-        {
-            return (Vector2)charBehaviour.transform.position != orderMechanic.EmptySeatPosition();
-        }
+        
 
         public override void PhysicsUpdate()
         {

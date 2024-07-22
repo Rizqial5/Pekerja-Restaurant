@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1426740999067408694}
   - component: {fileID: 1426740999067408695}
   - component: {fileID: 5995578504441380210}
+  - component: {fileID: 713752815781333716}
   - component: {fileID: -8929974259958187243}
   - component: {fileID: 3362152099233717155}
   - component: {fileID: 2221750933687393158}
@@ -154,6 +155,21 @@ MonoBehaviour:
   maxValueQueue: 50
   queuePoints: []
   exitPoints: {fileID: 0}
+--- !u!114 &713752815781333716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426740999067408651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b02bc04774cbe0a4b85ee293c4e9c3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  avoidanceDistance: 1
+  avoidanceStrength: 5
 --- !u!114 &-8929974259958187243
 MonoBehaviour:
   m_ObjectHideFlags: 0

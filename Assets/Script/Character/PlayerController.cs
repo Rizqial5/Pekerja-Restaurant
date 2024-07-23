@@ -14,10 +14,15 @@ namespace TestPR.Character
         private bool isMovingUp;
         private bool isMovingDown;
 
-        private void Start()
+        private AnimationController animController;
+
+        private void Awake()
         {
+            animController = GetComponent<AnimationController>();
             rb = GetComponent<Rigidbody2D>();
         }
+
+        
 
         // Update is called once per frame
         void Update()
@@ -29,6 +34,8 @@ namespace TestPR.Character
             }  // jika waktu kerja sudah habis maka pergerakan player mati
 
             rb.velocity = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * speed;
+
+            animController.SetPlayerWalk(rb.velocity.sqrMagnitude);
 
             if(Input.GetKeyDown(KeyCode.W))
             {

@@ -31,7 +31,7 @@ namespace TestPR.Character
         {
             Vector3 playerViewportPosition = Camera.main.WorldToViewportPoint(player.transform.position);
 
-            print(playerViewportPosition.y);
+           
 
             if (playerViewportPosition.y >=  offsetUp)
             {

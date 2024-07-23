@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TestPR.Core;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -22,6 +23,8 @@ namespace TestPR.UI
 
         private void Update()
         {
+            if (GameManager.instance.isWorkHourDone) return;
+
             loadSlider.maxValue = maxValue;
             loadSlider.value += 10 * Time.deltaTime;
 

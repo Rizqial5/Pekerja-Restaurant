@@ -71,7 +71,7 @@ namespace TestPR.NPC
 
         void Update()
         {
-
+            if (GameManager.instance.isWorkHourDone) return;
             charStateMachine.currentCharState.FrameUpdate();
 
             

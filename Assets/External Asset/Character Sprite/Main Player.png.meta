@@ -7938,11 +7938,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_373
+      name: PlayerInteractRight_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 384
+        y: 385
         width: 32
         height: 64
       alignment: 7
@@ -7959,7 +7959,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_374
+      name: PlayerInteractRight_1
       rect:
         serializedVersion: 2
         x: 32
@@ -7980,7 +7980,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_375
+      name: PlayerInteractRight_2
       rect:
         serializedVersion: 2
         x: 64
@@ -8001,7 +8001,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_376
+      name: PlayerInteractRight_3
       rect:
         serializedVersion: 2
         x: 96
@@ -8022,7 +8022,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_377
+      name: PlayerInteractRight_4
       rect:
         serializedVersion: 2
         x: 128
@@ -8043,7 +8043,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_378
+      name: PlayerInteractRight_5
       rect:
         serializedVersion: 2
         x: 160
@@ -8064,7 +8064,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_379
+      name: PlayerInteractUp_0
       rect:
         serializedVersion: 2
         x: 192
@@ -8085,7 +8085,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_380
+      name: PlayerInteractUp_1
       rect:
         serializedVersion: 2
         x: 224
@@ -8106,7 +8106,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_381
+      name: PlayerInteractUp_2
       rect:
         serializedVersion: 2
         x: 256
@@ -8127,7 +8127,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_382
+      name: PlayerInteractUp_3
       rect:
         serializedVersion: 2
         x: 288
@@ -8148,7 +8148,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_383
+      name: PlayerInteractUp_4
       rect:
         serializedVersion: 2
         x: 320
@@ -8169,7 +8169,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_384
+      name: PlayerInteractUp_5
       rect:
         serializedVersion: 2
         x: 352
@@ -8190,7 +8190,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_385
+      name: PlayerInteractLeft_0
       rect:
         serializedVersion: 2
         x: 384
@@ -8211,7 +8211,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_386
+      name: PlayerInteractLeft_1
       rect:
         serializedVersion: 2
         x: 416
@@ -8232,7 +8232,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_387
+      name: PlayerInteractLeft_2
       rect:
         serializedVersion: 2
         x: 448
@@ -8253,7 +8253,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_388
+      name: PlayerInteractLeft_3
       rect:
         serializedVersion: 2
         x: 480
@@ -8274,7 +8274,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_389
+      name: PlayerInteractLeft_4
       rect:
         serializedVersion: 2
         x: 512
@@ -8295,7 +8295,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_390
+      name: PlayerInteractLeft_5
       rect:
         serializedVersion: 2
         x: 544
@@ -8316,7 +8316,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_391
+      name: PlayerInteractDown_0
       rect:
         serializedVersion: 2
         x: 576
@@ -8358,7 +8358,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_393
+      name: PlayerInteractDown_2
       rect:
         serializedVersion: 2
         x: 640
@@ -8379,7 +8379,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_394
+      name: PlayerInteractDown_3
       rect:
         serializedVersion: 2
         x: 672
@@ -8400,7 +8400,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_395
+      name: PlayerInteractDown_4
       rect:
         serializedVersion: 2
         x: 704
@@ -8421,11 +8421,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Player_396
+      name: PlayerInteractDown_5
       rect:
         serializedVersion: 2
         x: 736
-        y: 384
+        y: 383
         width: 32
         height: 64
       alignment: 7
@@ -11676,32 +11676,9 @@ TextureImporter:
       Main Player_370: 1843572005
       Main Player_371: -1926811795
       Main Player_372: -517330270
-      Main Player_373: 1640673973
-      Main Player_374: -1935383089
-      Main Player_375: 708139915
-      Main Player_376: 282170396
-      Main Player_377: 254554869
-      Main Player_378: 530366255
-      Main Player_379: 401113537
       Main Player_38: -1729912908
-      Main Player_380: 977838296
-      Main Player_381: -479845638
-      Main Player_382: 105314335
-      Main Player_383: 723373649
-      Main Player_384: -1337247138
-      Main Player_385: -10479064
-      Main Player_386: 1557069378
-      Main Player_387: -1398065923
-      Main Player_388: 560190083
-      Main Player_389: -1885647151
       Main Player_39: -1698085523
-      Main Player_390: 1482608517
-      Main Player_391: 1301608454
       Main Player_392: -1006348721
-      Main Player_393: -1858945152
-      Main Player_394: -692890282
-      Main Player_395: 1211211718
-      Main Player_396: 292180043
       Main Player_397: -69977080
       Main Player_398: -222402749
       Main Player_399: 1402711788
@@ -11907,6 +11884,29 @@ TextureImporter:
       Main Player_97: 1916726413
       Main Player_98: 1770335266
       Main Player_99: 160551674
+      PlayerInteractDown_0: 1301608454
+      PlayerInteractDown_2: -1858945152
+      PlayerInteractDown_3: -692890282
+      PlayerInteractDown_4: 1211211718
+      PlayerInteractDown_5: 292180043
+      PlayerInteractLeft_0: -10479064
+      PlayerInteractLeft_1: 1557069378
+      PlayerInteractLeft_2: -1398065923
+      PlayerInteractLeft_3: 560190083
+      PlayerInteractLeft_4: -1885647151
+      PlayerInteractLeft_5: 1482608517
+      PlayerInteractRight_0: 1640673973
+      PlayerInteractRight_1: -1935383089
+      PlayerInteractRight_2: 708139915
+      PlayerInteractRight_3: 282170396
+      PlayerInteractRight_4: 254554869
+      PlayerInteractRight_5: 530366255
+      PlayerInteractUp_0: 401113537
+      PlayerInteractUp_1: 977838296
+      PlayerInteractUp_2: -479845638
+      PlayerInteractUp_3: 105314335
+      PlayerInteractUp_4: 723373649
+      PlayerInteractUp_5: -1337247138
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

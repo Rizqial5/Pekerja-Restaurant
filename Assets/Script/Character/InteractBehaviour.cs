@@ -9,23 +9,34 @@ namespace TestPR.Character
     public class InteractBehaviour : MonoBehaviour
     {
 
+        [SerializeField] private GameObject interactMark;
+
         private bool isInteractAble;
 
         private Customer interactedNpc;
 
         private QueueSystem queueSystem;
 
+        private AnimationController animController;
+
         private void Awake()
         {
             queueSystem = FindAnyObjectByType<QueueSystem>();
+            animController = GetComponent<AnimationController>();
         }
 
         private void Update()
         {
+
+            interactMark.SetActive(isInteractAble);
+
             if (!isInteractAble) return;
 
             if(Input.GetKeyDown(KeyCode.K))
             {
+
+                animController.InteractTriggered();
+
                 if(!interactedNpc.isPermittedToEnter)
                 {
                     interactedNpc.isPermittedToEnter = true;

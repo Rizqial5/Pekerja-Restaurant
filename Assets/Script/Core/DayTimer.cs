@@ -61,7 +61,7 @@ namespace TestPR.Core
                 print("waktunya istirahat");
 
             }
-            //else if (currentHour == 17)
+            //else if (currentHour == 21)
             //{
             //    GameManager.instance.isWorkHourDone = true;
             //    print("Toko sudah ditutup");

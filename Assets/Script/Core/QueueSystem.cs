@@ -8,14 +8,14 @@ namespace TestPR.Core
 {
     public class QueueSystem : MonoBehaviour
     {
-        [SerializeField] private GameObject customerPrefab; // Prefab pelanggan
-        [SerializeField] private Transform queueStartPoint; // Titik awal antrian
-        [SerializeField] private Transform[] queuePoints; // Titik-titik antrian
+        [SerializeField] private GameObject customerPrefab; 
+        [SerializeField] private Transform queueStartPoint; 
+        [SerializeField] private Transform[] queuePoints; 
 
-        [SerializeField] private float customerArrivalInterval = 5f; // Interval kedatangan pelanggan dalam detik
-        [SerializeField] private float serviceTime = 10f; // Waktu pelayanan per pelanggan dalam detik
-        [SerializeField] private int maxCustomers = 4; // Maksimum jumlah pelanggan dalam antrian
-        [SerializeField] private TextMeshProUGUI queueDisplay; // Tampilan antrian pelanggan
+        [SerializeField] private float customerArrivalInterval = 5f; 
+        [SerializeField] private float serviceTime = 10f; 
+        [SerializeField] private int maxCustomers = 4; 
+        
 
         private int totalCustomer;
         private int totalAngryCustomer;
@@ -33,16 +33,13 @@ namespace TestPR.Core
 
         void Update()
         {
-            //if (customerQueue.Count > 0)
-            //{
-            //    timer += Time.deltaTime;
 
-            //    if (timer >= serviceTime)
-            //    {
-            //        timer = 0f;
-            //        ServeCustomer();
-            //    }
-            //}
+
+           if(GameManager.instance.isWorkHourDone)
+            {
+                CancelInvoke("GenerateCustomer");
+                return;
+            }
 
             if(Input.GetKeyDown(KeyCode.Space))
             {

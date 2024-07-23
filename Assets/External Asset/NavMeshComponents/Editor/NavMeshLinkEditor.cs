@@ -1,7 +1,7 @@
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
 
-namespace UnityEditor.AI
+namespace NavMeshPlus.Components.Editors
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(NavMeshLink))]
@@ -36,13 +36,10 @@ namespace UnityEditor.AI
             s_SelectedID = 0;
             s_SelectedPoint = -1;
 
-            NavMeshVisualizationSettings.showNavigation++;
+
         }
 
-        void OnDisable()
-        {
-            NavMeshVisualizationSettings.showNavigation--;
-        }
+
 
         static Matrix4x4 UnscaledLocalToWorldMatrix(Transform t)
         {
@@ -75,7 +72,7 @@ namespace UnityEditor.AI
         {
             serializedObject.Update();
 
-            NavMeshComponentsGUIUtility.AgentTypePopup("Agent Type", m_AgentTypeID);
+            EditorGUILayout.PropertyField(m_AgentTypeID);
             EditorGUILayout.Space();
 
             EditorGUILayout.PropertyField(m_StartPoint);
@@ -110,8 +107,7 @@ namespace UnityEditor.AI
             EditorGUILayout.PropertyField(m_CostModifier);
             EditorGUILayout.PropertyField(m_AutoUpdatePosition);
             EditorGUILayout.PropertyField(m_Bidirectional);
-
-            NavMeshComponentsGUIUtility.AreaPopup("Area Type", m_Area);
+            EditorGUILayout.PropertyField(m_Area);
 
             serializedObject.ApplyModifiedProperties();
 
@@ -135,10 +131,12 @@ namespace UnityEditor.AI
             Gizmos.DrawLine(navLink.startPoint + right * rad, navLink.endPoint + right * rad);
         }
 
-        [DrawGizmo(GizmoType.Selected | GizmoType.Active | GizmoType.Pickable)]
+
+        [DrawGizmo(GizmoType.InSelectionHierarchy | GizmoType.Active | GizmoType.Pickable)]
+
         static void RenderBoxGizmo(NavMeshLink navLink, GizmoType gizmoType)
         {
-            if (!EditorApplication.isPlaying)
+            if (!EditorApplication.isPlaying && navLink.isActiveAndEnabled)
                 navLink.UpdateLink();
 
             var color = s_HandleColor;
@@ -162,7 +160,9 @@ namespace UnityEditor.AI
         [DrawGizmo(GizmoType.NotInSelectionHierarchy | GizmoType.Pickable)]
         static void RenderBoxGizmoNotSelected(NavMeshLink navLink, GizmoType gizmoType)
         {
-            if (NavMeshVisualizationSettings.showNavigation > 0)
+            if (!EditorApplication.isPlaying && navLink.isActiveAndEnabled)
+                navLink.UpdateLink();
+
             {
                 var color = s_HandleColor;
                 if (!navLink.enabled)
@@ -265,8 +265,8 @@ namespace UnityEditor.AI
             Handles.color = oldColor;
         }
 
-        [MenuItem("GameObject/AI/NavMesh Link", false, 2002)]
-        static public void CreateNavMeshLink(MenuCommand menuCommand)
+        [MenuItem("GameObject/Navigation/NavMesh Link", false, 2002)]
+        public static void CreateNavMeshLink(MenuCommand menuCommand)
         {
             var parent = menuCommand.context as GameObject;
             GameObject go = NavMeshComponentsGUIUtility.CreateAndSelectGameObject("NavMesh Link", parent);

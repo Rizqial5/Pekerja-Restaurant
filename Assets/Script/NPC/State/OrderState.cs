@@ -45,12 +45,20 @@ namespace TestPR.NPC
 
             if (orderMechanic.EmptySeatPosition() == null) return;
 
-            if (charBehaviour.GetNpcMover().MoveToTarget(orderMechanic.EmptySeatPosition()))
-            {
-                charBehaviour.SetTargetPosition(null);
-                orderMechanic.StartOrder();
+            charBehaviour.GetNpcMover().SetTarget(orderMechanic.EmptySeatPosition());
 
+            if (charBehaviour.GetNpcMover().HasReachedTarget())
+            {
+                //charBehaviour.GetNpcMover().SetTarget(null);
+                orderMechanic.StartOrder();
             }
+
+            //if (charBehaviour.GetNpcMover().MoveToTarget(orderMechanic.EmptySeatPosition()))
+            //{
+            //    charBehaviour.SetTargetPosition(null);
+            //    orderMechanic.StartOrder();
+
+            //}
 
 
 

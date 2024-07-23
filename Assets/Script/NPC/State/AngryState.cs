@@ -22,15 +22,15 @@ namespace TestPR.NPC
 
         public override void FrameUpdate()
         {
-            if (charBehaviour.GetExitLocation() == null) return;
+            //if (charBehaviour.GetExitLocation() == null) return;
 
-            if (charBehaviour.GetNpcMover().MoveToTarget(charBehaviour.GetExitLocation()))
-            {
-                charBehaviour.SetTargetPosition(null);
-                charBehaviour.CustomerDone();
+            //if (charBehaviour.GetNpcMover().MoveToTarget(charBehaviour.GetExitLocation()))
+            //{
+            //    charBehaviour.SetTargetPosition(null);
+            //    charBehaviour.CustomerDone();
 
 
-            }
+            //}
         }
 
         public override void PhysicsUpdate()

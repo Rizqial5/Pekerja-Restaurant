@@ -49,11 +49,19 @@ namespace TestPR.NPC
 
             if (charBehaviour.GetTargetPosition() == null) return;
 
-            if (charBehaviour.GetNpcMover().MoveToTarget(charBehaviour.GetTargetPosition()))
+            charBehaviour.GetNpcMover().SetTarget(charBehaviour.GetTargetPosition());
+
+            if(charBehaviour.GetNpcMover().HasReachedTarget())
             {
-                charBehaviour.SetTargetPosition(null);
+                //charBehaviour.GetNpcMover().SetTarget(null);
                 charBehaviour.GetLoadBarBehaviour().SpawnBar(charBehaviour.maxValueQueue, charBehaviour.SetCustomerToAngry);
             }
+
+            //if (charBehaviour.GetNpcMover().MoveToTarget(charBehaviour.GetTargetPosition()))
+            //{
+            //    charBehaviour.SetTargetPosition(null);
+            //    charBehaviour.GetLoadBarBehaviour().SpawnBar(charBehaviour.maxValueQueue, charBehaviour.SetCustomerToAngry);
+            //}
 
             
 

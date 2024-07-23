@@ -1,9 +1,9 @@
 using UnityEditor.IMGUI.Controls;
 using UnityEditorInternal;
-using UnityEngine.AI;
 using UnityEngine;
+using UnityEditor;
 
-namespace UnityEditor.AI
+namespace NavMeshPlus.Components.Editors
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(NavMeshModifierVolume))]
@@ -29,15 +29,7 @@ namespace UnityEditor.AI
             m_AffectedAgents = serializedObject.FindProperty("m_AffectedAgents");
             m_Area = serializedObject.FindProperty("m_Area");
             m_Center = serializedObject.FindProperty("m_Center");
-            m_Size = serializedObject.FindProperty("m_Size");
-
-            NavMeshVisualizationSettings.showNavigation++;
-        }
-
-        void OnDisable()
-        {
-            NavMeshVisualizationSettings.showNavigation--;
-        }
+            m_Size = serializedObject.FindProperty("m_Size");        }
 
         Bounds GetBounds()
         {
@@ -54,15 +46,15 @@ namespace UnityEditor.AI
 
             EditorGUILayout.PropertyField(m_Size);
             EditorGUILayout.PropertyField(m_Center);
-
-            NavMeshComponentsGUIUtility.AreaPopup("Area Type", m_Area);
+            EditorGUILayout.PropertyField(m_Area);
             NavMeshComponentsGUIUtility.AgentMaskPopup("Affected Agents", m_AffectedAgents);
             EditorGUILayout.Space();
 
             serializedObject.ApplyModifiedProperties();
         }
 
-        [DrawGizmo(GizmoType.Selected | GizmoType.Active)]
+
+        [DrawGizmo(GizmoType.InSelectionHierarchy | GizmoType.Active)]
         static void RenderBoxGizmo(NavMeshModifierVolume navModifier, GizmoType gizmoType)
         {
             var color = navModifier.enabled ? s_HandleColor : s_HandleColorDisabled;
@@ -88,7 +80,6 @@ namespace UnityEditor.AI
         [DrawGizmo(GizmoType.NotInSelectionHierarchy | GizmoType.Pickable)]
         static void RenderBoxGizmoNotSelected(NavMeshModifierVolume navModifier, GizmoType gizmoType)
         {
-            if (NavMeshVisualizationSettings.showNavigation > 0)
             {
                 var color = navModifier.enabled ? s_HandleColor : s_HandleColorDisabled;
                 var oldColor = Gizmos.color;
@@ -132,7 +123,7 @@ namespace UnityEditor.AI
             }
         }
 
-        [MenuItem("GameObject/AI/NavMesh Modifier Volume", false, 2001)]
+        [MenuItem("GameObject/Navigation/NavMesh Modifier Volume", false, 2001)]
         static public void CreateNavMeshModifierVolume(MenuCommand menuCommand)
         {
             var parent = menuCommand.context as GameObject;

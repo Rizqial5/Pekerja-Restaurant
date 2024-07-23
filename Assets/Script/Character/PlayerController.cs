@@ -11,6 +11,9 @@ namespace TestPR.Character
 
         [SerializeField] float speed;
 
+        private bool isMovingUp;
+        private bool isMovingDown;
+
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -27,8 +30,22 @@ namespace TestPR.Character
 
             rb.velocity = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * speed;
 
+            if(Input.GetKeyDown(KeyCode.W))
+            {
+                isMovingUp = true;
+                isMovingDown = false;
+
+            }else if(Input.GetKeyDown(KeyCode.S))
+            {
+                isMovingUp = false;
+                isMovingDown = true;
+            }
             //animation character play
         }
+
+
+        public bool IsMovingUp() { return isMovingUp; }
+        public bool IsMovingDown() { return isMovingDown; }
 
         
     }

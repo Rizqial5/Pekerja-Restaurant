@@ -30,13 +30,22 @@ namespace TestPR.NPC
 
             if (charBehaviour.GetExitLocation() == null) return;
 
-            if (charBehaviour.GetNpcMover().MoveToTarget(charBehaviour.GetExitLocation()))
+            charBehaviour.GetNpcMover().SetTarget(charBehaviour.GetExitLocation());
+
+            if (charBehaviour.GetNpcMover().HasReachedTarget())
             {
-                charBehaviour.SetTargetPosition(null);
-                charBehaviour.CustomerDone();
-
-
+                //charBehaviour.GetNpcMover().SetTarget(null);
+                charBehaviour.CustomerDone(); 
             }
+
+
+            //if (charBehaviour.GetNpcMover().MoveToTarget(charBehaviour.GetExitLocation()))
+            //{
+            //    charBehaviour.SetTargetPosition(null);
+            //    charBehaviour.CustomerDone();
+
+
+            //}
 
             
         }

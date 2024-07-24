@@ -13,9 +13,16 @@ namespace TestPR.NPC
         
         private NavMeshAgent npcAgent;
 
-        private float stoppingDistance = 0.001f;
-
         private Transform target;
+
+        private NpcAnimController animController;
+
+        private float NPCPosX = 0;
+
+        private void Awake()
+        {
+            animController = GetComponent<NpcAnimController>();
+        }
 
         private void Start()
         {
@@ -30,6 +37,7 @@ namespace TestPR.NPC
 
         private void Update()
         {
+            NpcXPosition();
             if (HasReachedTarget())
             {
                 npcAgent.isStopped = true;
@@ -38,28 +46,25 @@ namespace TestPR.NPC
             {
                 npcAgent.isStopped = false;
             }
+
+            animController.SetAnimWalk(npcAgent.isStopped);
+
+            animController.SetAnimPos(NPCPosX, npcAgent.velocity.y);
         }
-        //public bool MoveToTarget(Transform target)
-        //{
-        //    if(target == null) return false;
-
-        //    Vector3 direction = (target.position - transform.position).normalized;
-            
-        //    float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
 
-        //    if(distanceToTarget <= stoppingDistance)
-        //    {
-        //        return true;
-        //    }
+        public void NpcXPosition()
+        {
+            if(npcAgent.velocity.x < 0)
+            {
+                NPCPosX =  -1;
 
-            
-        //    Vector3 finalDirection = direction.normalized;
-
-        //    transform.position += finalDirection * moveSpeed * Time.deltaTime;
-
-        //    return false;
-        //}
+            }else if(npcAgent.velocity.x > 0)
+            {
+                NPCPosX = 1;
+            }
+        }
+        
 
         public void SetTarget(Transform target)
         {
@@ -79,6 +84,20 @@ namespace TestPR.NPC
                 }
             }
             return false;
+        }
+
+        public float ReversePosX()
+        {
+            if(NPCPosX == -1)
+            {
+                return 1;
+
+            } else if(NPCPosX == 1)
+            {
+                return -1;
+            }
+
+            return 0;
         }
 
 

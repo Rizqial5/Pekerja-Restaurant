@@ -21,11 +21,14 @@ namespace TestPR.NPC
         #endregion
 
         [SerializeField] public float maxValueQueue;
+        [SerializeField] private GameObject happyEmotion;
+        [SerializeField] private GameObject angryEmotion;
 
         private OrderMechanic orderMechanic;
         private LoadBarBehaviour loadBarBehaviour;
         private QueueSystem queueSystem;
         private NpcMover npcMover;
+       
         
 
         public int ID { get; private set; }
@@ -35,13 +38,13 @@ namespace TestPR.NPC
         private int currentQueueIndex = 0;
         private int oldQueueIndex = 0;
         
-        private float speed = 5f;
-        private bool isMoving = false;
+       
+        
         private bool isAngry;
         private Transform targetPosition;
-        
 
-        public bool isPermittedToEnter {  get; set; }
+
+        private bool isPermittedToEnter = false;
 
 
         private void Awake()
@@ -83,10 +86,10 @@ namespace TestPR.NPC
                 
         }
 
-        public void Initialize(int id, float arrivalTime, Transform[] queuePoints)
+        public void Initialize(int id, Transform[] queuePoints)
         {
             ID = id;
-            ArrivalTime = arrivalTime;
+            
             this.queuePoints = queuePoints;
 
             
@@ -131,19 +134,7 @@ namespace TestPR.NPC
             return targetPosition = valueTransform;
         }
 
-        //public void MoveToPosition(Vector2 target)
-        //{
-        //    float step = speed * Time.deltaTime;
-        //    transform.position = Vector2.MoveTowards(transform.position, target, step);
-
-        //    if (IsOnTargetedPosition(target))
-        //    {
-        //        isMoving = false;
-
-        //        //loadBarBehaviour.SpawnBar(maxValueQueue, CustomerAngry);
-
-        //    }
-        //}
+        
 
         public void CustomerDone()
         {
@@ -158,18 +149,17 @@ namespace TestPR.NPC
         }
         public void UpdateCustomerAngry() 
         {
-            print("Customer marah - marah");
+            angryEmotion.SetActive(true);
+
             queueSystem.UpdateTotalAngryCustomer();
         }
 
         public void UpdateCustomerHappy()
         {
+            happyEmotion.SetActive(true);
             queueSystem.UpdateTotalSuccesCustomer();
         }
-        //public bool IsOnTargetedPosition(Vector2 target)
-        //{
-        //    return (Vector2)transform.position == target;
-        //}
+        
 
         public bool IsQueueIndexChanged()
         {
@@ -196,6 +186,22 @@ namespace TestPR.NPC
 
         public Transform GetExitLocation() { return exitPoints; }
 
+        public bool SetPermittedEnter(bool value)
+        {
+            return isPermittedToEnter = value;
+        }
 
+        public bool GetPermittedEnter()
+        {
+
+            return isPermittedToEnter; 
+        }
+
+        public bool IsCustomerOnFirstQueue()
+        {
+            if(currentQueueIndex == 0) return true;
+
+            return false;
+        }
     }
 }

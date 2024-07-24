@@ -39,6 +39,7 @@ namespace TestPR.NPC
 
             if (orderMechanic.GetIsOrderDone() && orderMechanic.IsPermittedToLeave())// ditambahi jika customer juga sudah dipersilahkan keluar
             {
+                orderMechanic.npcAnimController.SetAnimSit(false, orderMechanic.npcMover.ReversePosX());
                 charBehaviour.charStateMachine.ChangeState(charBehaviour.doneState);
             }
 

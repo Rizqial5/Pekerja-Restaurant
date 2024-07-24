@@ -15,10 +15,19 @@ namespace TestPR.NPC
        
 
         private int currentIndexString = 0;
+        private int currentSeatIndex;
+
+        private GameObject spawnedFood;
+
         private Customer customer;
         private sitLoc emptySeat;
         private SeatSystem seatSystem;
         private OrderUI orderUI;
+        private FoodSpawner foodSpawner;
+
+
+        public NpcAnimController npcAnimController;
+        public NpcMover npcMover;
 
 
         private float timeElapsed = 0f;
@@ -29,11 +38,14 @@ namespace TestPR.NPC
         private void Awake()
         {
             customer = GetComponent<Customer>();
+            npcAnimController = GetComponent<NpcAnimController>();
+            npcMover = GetComponent<NpcMover>();
         }
 
         private void Start()
         {
             seatSystem = FindAnyObjectByType<SeatSystem>();
+            foodSpawner = FindAnyObjectByType<FoodSpawner>();
             isOrderDone = false;
             
         }
@@ -41,6 +53,7 @@ namespace TestPR.NPC
         public void SetEmptySeat()
         {
             emptySeat = seatSystem.GetEmptySeat();
+            currentSeatIndex = seatSystem.GetSeatIndex();
 
             if(emptySeat == null)
             {
@@ -66,8 +79,13 @@ namespace TestPR.NPC
 
         public void StartOrder()
         {
+            
             if(!isOrderDone)
             {
+                npcAnimController.SetAnimSit(true, npcMover.ReversePosX());
+
+                
+
                 orderUI.gameObject.SetActive(true);
 
                 if(currentIndexString < orderSequenceStrings.Length)
@@ -75,22 +93,34 @@ namespace TestPR.NPC
                     timeElapsed += Time.deltaTime;
                     orderUI.SetOrderUIText(orderSequenceStrings[currentIndexString]);
 
+                    
+
 
                     if (timeElapsed >= waitTimePerSequence)
                     {
                         timeElapsed = 0f;
 
-             
+                        if (currentIndexString == 1)
+                        {
+                            print("makan");
+                            spawnedFood = foodSpawner.SpawnFood(currentSeatIndex);
+                        }
+
                         currentIndexString++;
                     }
                 }
                 else
                 {
                     isOrderDone=true;
+
+                    Destroy(spawnedFood);
+
+                    spawnedFood = foodSpawner.SpawnEmptyPlate(currentSeatIndex);
+
                     orderUI.SetOrderUIText("Done");
                 }
-                
 
+                
 
             } 
 
@@ -100,8 +130,11 @@ namespace TestPR.NPC
         {
             if (customer.isCustomerAngry()) return;
 
-
+            Destroy(spawnedFood);
             currentIndexString = 0;
+
+           
+
             orderUI.gameObject.SetActive(false);
             emptySeat.isSeatOccupied = false;
         }

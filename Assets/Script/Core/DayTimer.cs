@@ -15,10 +15,12 @@ namespace TestPR.Core
         [SerializeField] float timeScaleMultiplication;
         [SerializeField] int startTargetHour;
 
+
        
         private float currentTime = 0f;
 
         public UnityEvent onHourChanged;
+        public UnityEvent onAnHourLeft;
         
 
      
@@ -56,16 +58,16 @@ namespace TestPR.Core
                 print("satu jam berlalu");
             }
 
-            if (currentHour == 11)
+            
+            if (currentHour == 16)
             {
-                print("waktunya istirahat");
-
+                onAnHourLeft.Invoke();
             }
-            //else if (currentHour == 21)
-            //{
-            //    GameManager.instance.isWorkHourDone = true;
-            //    print("Toko sudah ditutup");
-            //}
+            else if (currentHour == 17)
+            {
+                GameManager.instance.isWorkHourDone = true;
+                print("Toko sudah ditutup");
+            }
 
 
         }

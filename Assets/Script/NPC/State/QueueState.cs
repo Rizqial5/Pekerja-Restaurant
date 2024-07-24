@@ -40,7 +40,7 @@ namespace TestPR.NPC
                 charBehaviour.charStateMachine.ChangeState(charBehaviour.angryState);
             }
 
-            if (charBehaviour.isPermittedToEnter) // jika NPC sudah di persilahkan untuk masuk resto
+            if (charBehaviour.GetPermittedEnter()) // jika NPC sudah di persilahkan untuk masuk resto
             {
                 charBehaviour.charStateMachine.ChangeState(charBehaviour.orderState);
             }

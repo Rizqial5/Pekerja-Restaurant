@@ -8,12 +8,12 @@ namespace TestPR.Core
 {
     public class QueueSystem : MonoBehaviour
     {
-        [SerializeField] private GameObject customerPrefab; 
+        [SerializeField] private GameObject[] customerPrefab; 
         [SerializeField] private Transform queueStartPoint; 
         [SerializeField] private Transform[] queuePoints; 
 
-        [SerializeField] private float customerArrivalInterval = 5f; 
-        [SerializeField] private float serviceTime = 10f; 
+        [SerializeField] private float customerArrivalInterval = 7f; 
+        
         [SerializeField] private int maxCustomers = 4; 
         
 
@@ -22,13 +22,14 @@ namespace TestPR.Core
         private int totalSuccesfullyOrder;
 
         private Queue<Customer> customerQueue = new Queue<Customer>();
-        private float timer = 0f;
+        
         private int customerID = 1;
         
 
         void Start()
         {
-            //InvokeRepeating("GenerateCustomer", customerArrivalInterval, customerArrivalInterval);
+            GenerateCustomer();
+            InvokeRepeating("GenerateCustomer", customerArrivalInterval, customerArrivalInterval);
         }
 
         void Update()
@@ -54,15 +55,17 @@ namespace TestPR.Core
         {
             if (customerQueue.Count < maxCustomers)
             {
-                GameObject customerObject = Instantiate(customerPrefab, queueStartPoint.position, Quaternion.identity);
+                int i = Random.Range(0, customerPrefab.Length);
+
+                GameObject customerObject = Instantiate(customerPrefab[i], queueStartPoint.position, Quaternion.identity);
 
                 totalCustomer++;
 
                 Customer newCustomer = customerObject.GetComponent<Customer>();
-                float arrivalTime = 2;
-                newCustomer.Initialize(customerID++, arrivalTime, queuePoints);
+                
+                newCustomer.Initialize(customerID++, queuePoints);
                 customerQueue.Enqueue(newCustomer);
-                Debug.Log("Customer " + newCustomer.ID + " arrived at " + newCustomer.ArrivalTime);
+                
             }
         }
 
@@ -76,6 +79,11 @@ namespace TestPR.Core
 
                 /*Destroy(servedCustomer.gameObject);*/ // Menghapus pelanggan setelah dilayani
             }
+        }
+
+        public void StopGenerate()
+        {
+            CancelInvoke("GenerateCustomer");
         }
 
         void UpdateQueuePositions()

@@ -10,6 +10,7 @@ namespace TestPR.Core
         [SerializeField] private sitLoc[] totalSeats;
 
         private OrderUIManager orderUIManager;
+        
 
         private void Awake()
         {
@@ -41,6 +42,19 @@ namespace TestPR.Core
             }
 
             return null;
+        }
+
+        public int GetSeatIndex()
+        {
+            for (int i = 0; i < totalSeats.Length; i++)
+            {
+                if (!totalSeats[i].isSeatOccupied)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
         }
 
         

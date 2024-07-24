@@ -155,7 +155,7 @@ TextureImporter:
         width: 92
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 18, y: 0, z: 14, w: 14}
       outline: []
       physicsShape: []
@@ -163,6 +163,174 @@ TextureImporter:
       bones: []
       spriteID: 25edf143a4ff9354db6238d56993d9e4
       internalID: 995002799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Load Bar
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 578
+        width: 50
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 8, y: 8, z: 8, w: 6}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e05ae4119940e943a6983da07f27b26
+      internalID: 1792917534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Green Bar
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 553
+        width: 36
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 3, z: 2, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7051d48f2f393d641b19ddf26d0ca8a6
+      internalID: 1638937858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Green Bar Load
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 648
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a658dc0ce0042be4e88282fb33f7de17
+      internalID: -190584711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Empty Bar inside
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 1096
+        width: 32
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d87b5230e74d144faf712d2fc07bf7d
+      internalID: 1380209594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Empty Bar tutup kanan
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 1128
+        width: 4
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 077ba57ebd91388408e4d02df056accb
+      internalID: -195936980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tutup kiri
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 1128
+        width: 4
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30a4aea2aed9a264fbf7fcb51e33ea3e
+      internalID: -254241985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_0
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 416
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 4, y: 8, z: 4, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09919a3cb4a599a4da997859ff5a3e71
+      internalID: -737744075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_1
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 416
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 4, y: 6, z: 4, w: 6}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d18c7118d9ea15f40af888c9254877d8
+      internalID: -1769048714
       vertices: []
       indices: 
       edges: []
@@ -178,9 +346,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Button_0: -737744075
+      Button_1: -1769048714
+      Empty Bar inside: 1380209594
+      Empty Bar tutup kanan: -195936980
+      Green Bar: 1638937858
+      Green Bar Load: -190584711
       LightWoodenFramePanel: -1022700891
+      Load Bar: 1792917534
       Timer UI: -196267906
       titel Holder: 995002799
+      tutup kiri: -254241985
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

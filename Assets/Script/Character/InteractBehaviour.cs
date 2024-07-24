@@ -32,14 +32,17 @@ namespace TestPR.Character
 
             if (!isInteractAble) return;
 
-            if(Input.GetKeyDown(KeyCode.K))
+            if(Input.GetKeyDown(KeyCode.Mouse0))
             {
 
                 animController.InteractTriggered();
 
-                if(!interactedNpc.isPermittedToEnter)
+
+                if(!interactedNpc.GetPermittedEnter())
                 {
-                    interactedNpc.isPermittedToEnter = true;
+                    if(!interactedNpc.IsCustomerOnFirstQueue()) return;
+
+                    interactedNpc.SetPermittedEnter(true);
                     queueSystem.ServeCustomer();
                 }
                 

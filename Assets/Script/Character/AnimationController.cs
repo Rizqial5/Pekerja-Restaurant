@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TestPR.Core;
 using UnityEngine;
 
 namespace TestPR.Character
@@ -16,6 +17,13 @@ namespace TestPR.Character
 
         private void Update()
         {
+            if (GameManager.instance.isWorkHourDone)
+            {
+                playerAnimator.enabled = false;
+                return;
+            }
+
+
             if(Input.GetAxisRaw("Horizontal") == 1)
             {
                 playerAnimator.SetFloat("XPos", 1);

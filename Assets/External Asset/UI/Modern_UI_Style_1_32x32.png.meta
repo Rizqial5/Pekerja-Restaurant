@@ -302,7 +302,7 @@ TextureImporter:
         width: 28
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 4, y: 8, z: 4, w: 4}
       outline: []
       physicsShape: []
@@ -323,7 +323,7 @@ TextureImporter:
         width: 28
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 4, y: 6, z: 4, w: 6}
       outline: []
       physicsShape: []
@@ -331,6 +331,27 @@ TextureImporter:
       bones: []
       spriteID: d18c7118d9ea15f40af888c9254877d8
       internalID: -1769048714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Button
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 958
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3be997889c5691c4ea72883ceac535fb
+      internalID: 1472687590
       vertices: []
       indices: 
       edges: []
@@ -352,6 +373,7 @@ TextureImporter:
       Empty Bar tutup kanan: -195936980
       Green Bar: 1638937858
       Green Bar Load: -190584711
+      Icon_Button: 1472687590
       LightWoodenFramePanel: -1022700891
       Load Bar: 1792917534
       Timer UI: -196267906

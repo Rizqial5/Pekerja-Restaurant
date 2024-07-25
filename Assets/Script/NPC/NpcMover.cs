@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TestPR.Core;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
@@ -37,6 +38,12 @@ namespace TestPR.NPC
 
         private void Update()
         {
+            if (GameManager.instance.isWorkHourDone)
+            {
+                npcAgent.isStopped = true;
+                return;
+            }
+
             NpcXPosition();
             if (HasReachedTarget())
             {

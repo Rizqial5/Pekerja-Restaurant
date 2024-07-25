@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TestPR.Core;
 using UnityEngine;
 
 namespace TestPR.NPC
@@ -11,6 +12,16 @@ namespace TestPR.NPC
         private void Awake()
         {
             npcAnimator = GetComponent<Animator>();
+        }
+
+        private void Update()
+        {
+            if (GameManager.instance.isWorkHourDone)
+            {
+                npcAnimator.enabled = false;
+            }
+
+
         }
 
         public void SetAnimWalk(bool isStopped)
